@@ -1,0 +1,33 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "critiques",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "photoid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "datetime",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "photos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "uploaded",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "datetime",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

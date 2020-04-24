@@ -9,7 +9,7 @@
         >
             <b-navbar-brand>
                 <router-link to="/home">
-                    <img src="images/fs-logo-white.png" alt="Logo." height="30px">
+                    <img src="../assets/logo.png" alt="Logo." height="30px">
                 </router-link>
             </b-navbar-brand>
 

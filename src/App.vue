@@ -1,12 +1,23 @@
 <template>
     <div id="app">
-        <div id="nav">
-            <router-link :to="{ name: 'home' }">Home</router-link>
-            <router-link to="/about">About</router-link>
-        </div>
+            <Navigation></Navigation>
+<!--        <div id="nav">-->
+<!--            <router-link :to="{ name: 'home' }">Home</router-link>-->
+<!--            <router-link to="/about">About</router-link>-->
+<!--        </div>-->
         <router-view />
     </div>
 </template>
+
+<script>
+import Navigation from "./components/Navigation";
+export default {
+    name: 'app',
+    components: {
+        'Navigation': Navigation
+    }
+}
+</script>
 
 <style lang="scss">
 #app {

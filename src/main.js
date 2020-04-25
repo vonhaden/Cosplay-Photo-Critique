@@ -10,7 +10,11 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
 // Firebase Import
-import { firestorePlugin } from 'vuefire';
+import { firestorePlugin } from "vuefire";
+import { Auth } from "./firebase/auth";
+
+// Model Imports
+import { User } from "./models/UserModel";
 
 
 // ------------------- Configuration ------------------- //
@@ -32,5 +36,23 @@ Vue.use(firestorePlugin);
 new Vue({
     router,
     store,
-    render: h => h(App)
+    render: h => h(App),
+
+    data: {
+        authUser: null
+    },
+
+    created: function() {
+        Auth.onAuthStateChanged(function(user) {
+            if (user) {
+                // user is signed in
+                console.log("Signed in");
+                App.authUser = new User(user);
+            } else {
+                // User is signed out.
+                console.log("Not signed in.");
+                App.authUser = null;
+            }
+        });
+    }
 }).$mount("#app");

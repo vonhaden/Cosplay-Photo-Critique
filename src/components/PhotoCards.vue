@@ -8,7 +8,7 @@
             img-alt="photo.title"
             img-top
             :key="photo.id"
-            @click="$router.push({name: 'photo', params: { id: photo.id }})"
+            @click="$router.push({ name: 'photo', params: { id: photo.id } })"
         >
             <b-card-text>
                 {{ photo.name }}
@@ -19,6 +19,7 @@
 
 <script>
 import { DB } from "../firebase/db";
+
 export default {
     name: "PhotoCards",
     data() {
@@ -33,7 +34,6 @@ export default {
         photos: DB.collection("photos")
             .where("uploaded", "==", true)
             .orderBy("datetime", "desc")
-        //photos: db.collection('photos').orderBy('datetime', 'desc'),
     }
 };
 </script>

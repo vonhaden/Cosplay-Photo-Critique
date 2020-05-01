@@ -1,5 +1,7 @@
+import firebase from "firebase/app";
 import { Auth } from "../firebase/auth";
 import { DB } from "../firebase/db";
+import { Account } from "../models/AccountModel";
 
 export const UserMixin = {
     props: {
@@ -19,17 +21,18 @@ export const UserMixin = {
 
     methods: {
         login() {
-            let provider = new Auth.GoogleAuthProvider();
+            let provider = new firebase.auth.GoogleAuthProvider();
             Auth.signInWithPopup(provider)
                 .then(function(result) {
                     // gives you a Google Access Token
                     let token = result.credential.accessToken;
+                    console.log("Google token:", token);
 
                     // check is the user is logging in for the first time
-                    var isNewUser = result.additionalUserInfo.isNewUser;
+                    let isNewUser = result.additionalUserInfo.isNewUser;
                     if (isNewUser) {
                         // set up the new account
-                        var theAccount = new Account();
+                        let theAccount = new Account();
                         theAccount.uid = result.user.uid;
                         theAccount.handle = result.user.displayName;
                         theAccount.name = result.user.displayName;
@@ -51,8 +54,8 @@ export const UserMixin = {
                 })
                 .catch(function(error) {
                     // Handle Errors here.
-                    let errorCode = error.code;
-                    let errorMessage = error.message;
+                    // let errorCode = error.code;
+                    // let errorMessage = error.message;
 
                     console.log(error);
                     // TODO: let the user know there was an error
@@ -60,7 +63,7 @@ export const UserMixin = {
         },
 
         logout() {
-            firebase.auth().signOut();
+            Auth.signOut();
         }
     }
 };

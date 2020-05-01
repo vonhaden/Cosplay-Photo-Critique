@@ -1,6 +1,7 @@
 <template>
     <div id="app">
-        <Navigation :auth-user="authUser"></Navigation>
+        <AuthNavigation :auth-user="authUser" v-if="authUser"></AuthNavigation>
+        <Navigation :auth-user="authUser" v-else></Navigation>
         <!-- <div id="nav">-->
         <!-- <router-link :to="{ name: 'home' }">Home</router-link>-->
         <!-- <router-link to="/about">About</router-link>-->
@@ -11,13 +12,15 @@
 
 <script>
 import Navigation from "./components/Navigation";
+import AuthNavigation from "./components/AuthNavigation";
 import { Auth } from "./firebase/auth";
 import { User } from "./models/UserModel";
 
 export default {
     name: "app",
     components: {
-        Navigation
+        Navigation,
+        AuthNavigation
     },
     data() {
         return {

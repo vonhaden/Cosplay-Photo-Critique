@@ -21,6 +21,7 @@
                 </b-nav-item>
             </b-navbar-nav>
         </b-collapse>
+
     </b-navbar>
 </template>
 
@@ -32,3 +33,11 @@ export default {
     mixins: [UserMixin]
 };
 </script>
+
+<style scoped lang="scss">
+.avatar {
+    height: 45px;
+    padding: 5px;
+    border-radius: 50%;
+}
+</style>

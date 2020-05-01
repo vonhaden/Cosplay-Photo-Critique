@@ -11,7 +11,6 @@
 
 <script>
 import Navigation from "./components/Navigation";
-import { App } from "./firebase/app";
 import { Auth } from "./firebase/auth";
 import { User } from "./models/UserModel";
 
@@ -27,15 +26,15 @@ export default {
     },
 
     created: function() {
-        Auth.onAuthStateChanged(function(user) {
+        Auth.onAuthStateChanged((user) => {
             if (user) {
                 // user is signed in
                 console.log("Signed in");
-                App.authUser = new User(user);
+                this.authUser = new User(user);
             } else {
                 // User is signed out.
                 console.log("Not signed in.");
-                App.authUser = null;
+                this.authUser = null;
             }
         });
     }

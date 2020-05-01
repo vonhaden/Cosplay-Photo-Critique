@@ -8,7 +8,14 @@
             img-alt="photo.title"
             img-top
             :key="photo.id"
-            @click="$router.push({ name: 'photo', params: { id: photo.id } })"
+            @click="
+                $router.push({
+                    name: 'photo',
+                    params: {
+                        id: photo.id
+                    }
+                })
+            "
         >
             <b-card-text>
                 {{ photo.name }}

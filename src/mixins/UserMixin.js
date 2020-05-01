@@ -1,3 +1,6 @@
+import { Auth } from "../firebase/auth";
+import { DB } from "../firebase/db";
+
 export const UserMixin = {
     props: {
         authUser: { required: true }
@@ -5,7 +8,7 @@ export const UserMixin = {
 
     computed: {
         loggedIn() {
-            return (this.authUser && this.authUser.uid);
+            return this.authUser && this.authUser.uid;
         },
         isCreator() {
             if (this.authUser) {
@@ -15,11 +18,10 @@ export const UserMixin = {
     },
 
     methods: {
-        login(){
-            let provider = new firebase.auth.GoogleAuthProvider();
-            firebase.auth()
-                .signInWithPopup(provider)
-                .then(function(result){
+        login() {
+            let provider = new Auth.GoogleAuthProvider();
+            Auth.signInWithPopup(provider)
+                .then(function(result) {
                     // gives you a Google Access Token
                     let token = result.credential.accessToken;
 
@@ -35,14 +37,15 @@ export const UserMixin = {
                         theAccount.photoURL = result.user.photoURL;
                         theAccount.created = new Date();
 
-                        db.collection('accounts').doc(result.user.uid)
+                        DB.collection("accounts")
+                            .doc(result.user.uid)
                             .set(theAccount)
-                            .then(function () {
-                                console.log('New account added');
-                                router.push({ name: 'editaccount' });
+                            .then(function() {
+                                console.log("New account added");
+                                this.$router.push({ name: "editaccount" });
                             })
-                            .catch(function (error) {
-                                console.log('Error adding details:', error);
+                            .catch(function(error) {
+                                console.log("Error adding details:", error);
                             });
                     }
                 })
@@ -56,8 +59,8 @@ export const UserMixin = {
                 });
         },
 
-        logout(){
+        logout() {
             firebase.auth().signOut();
-        },
-    },
-}
+        }
+    }
+};

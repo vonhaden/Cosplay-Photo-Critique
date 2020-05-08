@@ -29,7 +29,7 @@ export default {
     },
 
     created: function() {
-        Auth.onAuthStateChanged((user) => {
+        Auth.onAuthStateChanged(user => {
             if (user) {
                 // user is signed in
                 console.log("Signed in");

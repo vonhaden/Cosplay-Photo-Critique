@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Photo from "../views/Photo";
 
 // Install Vue Router
 Vue.use(VueRouter);
@@ -11,6 +12,12 @@ const routes = [
         path: "/",
         name: "home",
         component: Home
+    },
+    {
+        path: "/photo/:id",
+        name: "photo",
+        component: Photo,
+        props: true
     },
     {
         path: "/about",

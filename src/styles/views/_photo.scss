@@ -1,0 +1,86 @@
+.photo-page {
+    .photo-display {
+        text-align: center;
+        height: 80vh;
+        overflow: auto;
+        max-height: 60em;
+        background-color: #191f25;
+        margin-bottom: 2.3em;
+
+        a {
+            display: block;
+            height: 100%;
+        }
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .phototitle {
+        display: flex;
+        margin-bottom: 1em;
+
+        h1 {
+            font-weight: bold;
+            font-size: 2em;
+            padding-right: 0.5em;
+        }
+
+        h3 {
+            padding-left: 0.8em;
+            border-left: 2px solid #ddd;
+            font-size: 1.2em;
+            color: #808080;
+            margin: auto 0;
+        }
+    }
+
+    .photouser {
+        display: flex;
+        margin-bottom: 1.3em;
+
+        .names {
+            margin: auto 0;
+        }
+        .name {
+            font-weight: bold;
+            margin-bottom: 0.1em;
+        }
+
+        img {
+            border-radius: 50%;
+            margin-right: 1.2em;
+        }
+
+        h2 {
+            font-size: 1.3em;
+            margin-bottom: 0;
+            color: #464646;
+        }
+    }
+
+    .photospecs {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        font-size: 1.5em;
+        padding: 0.5em 0;
+        color: #929292;
+        margin-bottom: 1em;
+
+        p {
+            margin: 0;
+        }
+
+    }
+    .photosubject {
+        font-size: 1.3em;
+        color: #4c4c4c;
+    }
+    .photocomment {
+        color: #4c4c4c;
+    }
+
+}

@@ -7,7 +7,7 @@
         fixed="top"
     >
         <b-navbar-brand>
-            <router-link to="/home">
+            <router-link to="/">
                 <img src="../assets/logo.png" alt="Logo." height="30px" />
             </router-link>
         </b-navbar-brand>

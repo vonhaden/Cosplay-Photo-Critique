@@ -58,17 +58,16 @@
                 </b-col>
 
                 <b-col lg="6" sm="12" class="usercomments">
-                    <!--                    <div v-if="critiques != ''">-->
-                    <!--                        <h2>Critiques</h2>-->
-                    <!--                        <displaycritiques-->
-                    <!--                            v-for="critique in critiques"-->
-                    <!--                            :critique="critique"-->
-                    <!--                            :key="critique.id"-->
-                    <!--                            class="comment"-->
-                    <!--                        ></displaycritiques>-->
-                    <!--                        <div class="divider"></div>-->
-                    <!--                    </div>-->
-                    <!--                    <addcritique v-if="authUser" :id="id" :auth-user="authUser" class="addcomment"></addcritique>-->
+                    <div v-if="critiques !== ''">
+                        <h2>Critiques</h2>
+                        <Critique
+                            v-for="critique in critiques"
+                            :critique="critique"
+                            :key="critique.id"
+                        ></Critique>
+                        <div class="divider"></div>
+                    </div>
+                    <!--<addcritique v-if="authUser" :id="id" :auth-user="authUser" class="addcomment"></addcritique>-->
                 </b-col>
             </b-row>
         </b-container>
@@ -79,9 +78,13 @@
 import { UserMixin } from "../mixins/UserMixin";
 import { DB } from "../firebase/db";
 import { Storage } from "../firebase/storage";
+import Critique from "../components/Critique";
 
 export default {
     name: "Photo",
+    components: {
+        Critique
+    },
     mixins: [UserMixin],
     props: {
         id: {

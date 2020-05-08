@@ -1,34 +1,22 @@
 <template>
     <b-card-group columns>
-        <b-card
+        <PhotoCard
             v-for="photo in photos"
-            class="photocard"
-            :title="photo.handle"
-            :img-src="photo.image"
-            img-alt="photo.title"
-            img-top
+            :photo="photo"
             :key="photo.id"
-            @click="
-                $router.push({
-                    name: 'photo',
-                    params: {
-                        id: photo.id
-                    }
-                })
-            "
-        >
-            <b-card-text>
-                {{ photo.name }}
-            </b-card-text>
-        </b-card>
+        ></PhotoCard>
     </b-card-group>
 </template>
 
 <script>
 import { DB } from "../firebase/db";
+import PhotoCard from "./PhotoCard";
 
 export default {
     name: "PhotoCards",
+    components: {
+        PhotoCard
+    },
     data() {
         return {
             newPhoto: {

@@ -2,11 +2,9 @@
     <div id="app">
         <AuthNavigation :auth-user="authUser" v-if="authUser"></AuthNavigation>
         <Navigation :auth-user="authUser" v-else></Navigation>
-        <!-- <div id="nav">-->
-        <!-- <router-link :to="{ name: 'home' }">Home</router-link>-->
-        <!-- <router-link to="/about">About</router-link>-->
-        <!-- </div>-->
-        <router-view />
+        <main>
+            <router-view :auth-user="authUser" />
+        </main>
     </div>
 </template>
 

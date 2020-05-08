@@ -10,15 +10,11 @@ export var User = function(firebaseUser) {
         userdetails.displayName = firebaseUser.displayName
             ? firebaseUser.displayName
             : "";
-        userdetails.email = firebaseUser.email
-            ? firebaseUser.email 
-            : "";
+        userdetails.email = firebaseUser.email ? firebaseUser.email : "";
         userdetails.photoURL = firebaseUser.photoURL
             ? firebaseUser.photoURL
             : "";
-        userdetails.uid = firebaseUser.uid
-            ? firebaseUser.uid
-            : "";
+        userdetails.uid = firebaseUser.uid ? firebaseUser.uid : "";
     }
 
     return userdetails;

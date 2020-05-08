@@ -4,7 +4,6 @@
     </b-container>
 </template>
 
-
 <script>
 // @ is an alias to /src
 import PhotoCards from "../components/PhotoCards";

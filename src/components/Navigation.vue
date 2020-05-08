@@ -8,7 +8,7 @@
     >
         <b-navbar-brand>
             <router-link to="/home">
-                <img src="../assets/logo.png" alt="Logo." height="30px">
+                <img src="../assets/logo.png" alt="Logo." height="30px" />
             </router-link>
         </b-navbar-brand>
 
@@ -21,7 +21,6 @@
                 </b-nav-item>
             </b-navbar-nav>
         </b-collapse>
-
     </b-navbar>
 </template>
 

@@ -12,10 +12,8 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 // Firebase Import
 import { firestorePlugin } from "vuefire";
 
-
 // ------------------- Configuration ------------------- //
 Vue.config.productionTip = false;
-
 
 // ------------------- Use Statements ------------------- //
 // Install BootstrapVue
@@ -26,7 +24,6 @@ Vue.use(IconsPlugin);
 
 // Install Firestore
 Vue.use(firestorePlugin);
-
 
 // ------------------- Vue Instance ------------------- //
 new Vue({

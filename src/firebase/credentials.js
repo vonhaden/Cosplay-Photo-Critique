@@ -7,4 +7,4 @@ export default {
         projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
         messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID
     }
-}
+};

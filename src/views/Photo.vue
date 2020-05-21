@@ -58,7 +58,7 @@
                 </b-col>
 
                 <b-col lg="6" sm="12" class="usercomments">
-                    <div v-if="critiques !== ''">
+                    <div v-if="critiques != ''">
                         <h2>Critiques</h2>
                         <Critique
                             v-for="critique in critiques"

@@ -107,6 +107,14 @@ export default {
             this.$nextTick(() => {
                 this.$refs.observer.reset();
             });
+        },
+        addPoints() {
+            // TODO: Add points
+            // const increment = firebase.firestore.FieldValue.increment(5);
+            // // Document reference
+            // const storyRef = DB.collection("accounts").doc(this.authUser.uid);
+            // // Update read count
+            // storyRef.update({ points: increment });
         }
     }
 };

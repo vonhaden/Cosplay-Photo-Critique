@@ -20,7 +20,7 @@
                 <b-nav-item :to="'photosubmit'">Submit Photo</b-nav-item>
                 <b-nav-item-dropdown :text="account.handle" right>
                     <b-dropdown-item href="#" @click.prevent="logout">Logout</b-dropdown-item>
-                    <b-dropdown-item :to="'profile'">Profile</b-dropdown-item>
+                    <b-dropdown-item :to="{ name: 'profile', params: { id: authUser.uid }}">Profile</b-dropdown-item>
                 </b-nav-item-dropdown>
                 <div>
                     <b-img :src="account.photoURL" class="avatar"></b-img>

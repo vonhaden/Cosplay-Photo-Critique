@@ -1,0 +1,46 @@
+.profile-header-bg {
+    background-color: #191f25;
+    color: #fff;
+}
+.profile-header {
+    display: flex;
+    align-items: flex-end;
+
+    h3 {
+        font-size: 1.8em;
+    }
+    h4 {
+        font-size: 1.3em;
+    }
+    h5 {
+        font-size: 1em;
+        color: #a3a3a3;
+    }
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+        margin-right: 2em;
+
+        img {
+            object-fit: cover;
+            border: 2px solid #4c565f;
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
+
+
+.level-details {
+    display: flex;
+    align-items: center;
+
+    h5 {
+        padding-right: 1em;
+        margin-right: 1em;
+        border-right: 2px solid #dce1e6;
+    }
+    h6 {
+        color: #414951;
+    }
+}

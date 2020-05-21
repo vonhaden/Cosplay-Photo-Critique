@@ -13,6 +13,7 @@ import Navigation from "./components/Navigation";
 import AuthNavigation from "./components/AuthNavigation";
 import { Auth } from "./firebase/auth";
 import { User } from "./models/UserModel";
+import "./validation/validation";
 
 export default {
     name: "app",

@@ -67,7 +67,12 @@
                         ></Critique>
                         <div class="divider"></div>
                     </div>
-                    <!--<addcritique v-if="authUser" :id="id" :auth-user="authUser" class="addcomment"></addcritique>-->
+                    <AddCritique
+                        v-if="authUser"
+                        :id="id"
+                        :auth-user="authUser"
+                        class="addcomment"
+                    ></AddCritique>
                 </b-col>
             </b-row>
         </b-container>
@@ -79,11 +84,13 @@ import { UserMixin } from "../mixins/UserMixin";
 import { DB } from "../firebase/db";
 import { Storage } from "../firebase/storage";
 import Critique from "../components/Critique";
+import AddCritique from "../components/AddCritique";
 
 export default {
     name: "Photo",
     components: {
-        Critique
+        Critique,
+        AddCritique
     },
     mixins: [UserMixin],
     props: {

@@ -68,6 +68,9 @@ export default {
 
             let accountRef = DB.collection("accounts").doc(this.authUser.uid);
 
+            // set self equal to this
+            let self = this;
+
             // get the info from the account
             accountRef
                 .get()
@@ -106,7 +109,8 @@ export default {
                         let id = docRef.id;
 
                         // add image to firebase
-                        Storage.child("photos")
+                        Storage.ref()
+                            .child("photos")
                             .child(id)
                             .put(thePhoto.image)
                             .then(function(snapshot) {
@@ -122,7 +126,7 @@ export default {
                                     });
 
                                 // send to the next step
-                                this.$router.push({
+                                self.$router.push({
                                     name: "photoDetails",
                                     params: { id }
                                 });

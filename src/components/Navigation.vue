@@ -3,8 +3,7 @@
         toggleable="lg"
         type="dark"
         variant="dark"
-        class="mb-2 mb-lg-4"
-        fixed="top"
+        :sticky=true
     >
         <b-navbar-brand>
             <router-link to="/">

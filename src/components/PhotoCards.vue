@@ -1,5 +1,5 @@
 <template>
-    <b-card-group columns>
+    <b-card-group columns class="photo-cards">
         <PhotoCard
             v-for="photo in photos"
             :photo="photo"
@@ -32,3 +32,9 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.photo-cards {
+    margin: 2em 0;
+}
+</style>

@@ -1,0 +1,13 @@
+.submitphotoimage {
+    display: flex;
+    justify-content: center;
+    background-color: #191f25;
+    padding: 3em;
+    height: 95vh;
+
+    img {
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+}

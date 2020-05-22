@@ -52,8 +52,9 @@
                                     mode="lazy"
                                     :rules="{ required: true }"
                                     v-slot="{ errors }"
+                                    class="col-lg-4 xs-col-12"
                                 >
-                                    <b-form-group label="Shutter Speed:" label-for="shutter" class="col-lg-4 xs-col-12">
+                                    <b-form-group label="Shutter Speed:" label-for="shutter">
                                         <b-form-select
                                             id="shutter"
                                             name="shutter"
@@ -71,8 +72,9 @@
                                     mode="lazy"
                                     :rules="{ required: true, decimal: true, max: 10 }"
                                     v-slot="{ errors }"
+                                    class="col-lg-4 xs-col-12"
                                 >
-                                    <b-form-group label="Aperture:" label-for="aperture" class="col-lg-4 xs-col-12">
+                                    <b-form-group label="Aperture:" label-for="aperture">
                                         <b-form-select
                                             id="aperture"
                                             name="aperture"
@@ -90,8 +92,9 @@
                                     mode="lazy"
                                     :rules="{ required: true, numeric: true, max: 10 }"
                                     v-slot="{ errors }"
+                                    class="col-lg-4 xs-col-12"
                                 >
-                                    <b-form-group label="ISO:" label-for="iso" class="col-lg-4 xs-col-12">
+                                    <b-form-group label="ISO:" label-for="iso">
                                         <b-form-select
                                             id="iso"
                                             name="iso"
@@ -174,26 +177,30 @@ export default {
             console.log("Add Points");
         },
         addDetails() {
-            // runs all of the validation then if all are valid, submits the details
-            // this.$validator.validateAll().then((isValid) => {
-            //     if (isValid){
-            //         this.addPoints();
-            //         this.photo.uploaded = true;
-            //         DB.collection('photos').doc(this.id)
-            //             .update(this.photo)
-            //             .then(function(docRef) {
-            //                 console.log("Details added");
-            //                 router.push({ name: "home" });
-            //             })
-            //             .catch(function (error) {
-            //                 console.log("Error adding details:", error);
-            //
-            //                 //TODO let the user know
-            //             });
-            //     }
-            // });
-            alert("test");
+            // Add points for uploading
+            this.addPoints();
+
+            // Change upload value to true
+            this.photo.uploaded = true;
+
+            // Upload changes
+            DB.collection("photos")
+                .doc(this.id)
+                .update(this.photo)
+                .then(() => {
+                    console.log("Details added");
+                    this.$router.push({ name: "home" });
+                })
+                .catch(function(error) {
+                    console.log("Error adding details:", error);
+
+                    //TODO let the user know
+                });
         }
     }
 };
 </script>
+
+<style lang="scss" scoped>
+@import "../styles/views/photo-details";
+</style>

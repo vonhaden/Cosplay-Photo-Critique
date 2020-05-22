@@ -8,7 +8,7 @@
     >
         <b-navbar-brand>
             <router-link to="/">
-                <img src="../assets/logo.png" alt="Logo." height="30px">
+                <img src="../assets/costog-logo-white.svg" alt="Costog logo." height="30px">
             </router-link>
         </b-navbar-brand>
 

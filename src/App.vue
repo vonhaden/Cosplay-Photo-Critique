@@ -5,12 +5,14 @@
         <main>
             <router-view :auth-user="authUser" />
         </main>
+        <SiteFooter></SiteFooter>
     </div>
 </template>
 
 <script>
 import Navigation from "./components/Navigation";
 import AuthNavigation from "./components/AuthNavigation";
+import SiteFooter from "./components/SiteFooter";
 import { Auth } from "./firebase/auth";
 import { User } from "./models/UserModel";
 import "./validation/validation";
@@ -19,7 +21,8 @@ export default {
     name: "app",
     components: {
         Navigation,
-        AuthNavigation
+        AuthNavigation,
+        SiteFooter
     },
     data() {
         return {

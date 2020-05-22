@@ -10,7 +10,7 @@
                         <div>
                             <h3>{{ account.handle }}</h3>
                             <h4>{{ account.name }}</h4>
-                            <h5>Member since {{ formattedDate }}</h5>
+                            <h5 v-if="this.account.created">Member since {{ formattedDate }}</h5>
                         </div>
                     </b-col>
                 </b-container>

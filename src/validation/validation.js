@@ -1,6 +1,18 @@
 import en from "vee-validate/dist/locale/en.json";
-import { required, email, min, max, alpha_spaces, alpha_dash } from "vee-validate/dist/rules";
+import {
+    required,
+    email,
+    min,
+    max,
+    alpha_spaces,
+    alpha_dash,
+    size,
+    dimensions,
+    mimes
+} from "vee-validate/dist/rules";
 import { extend, localize } from "vee-validate";
+
+localize("en", en);
 
 extend("required", {
     ...required,
@@ -17,4 +29,8 @@ extend("alpha_spaces", alpha_spaces);
 
 extend("alpha_dash", alpha_dash);
 
-localize("en", en);
+extend("size", size);
+
+extend("dimensions", dimensions);
+
+extend("mimes", mimes);

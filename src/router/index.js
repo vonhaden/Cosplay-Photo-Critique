@@ -24,15 +24,20 @@ const routes = [
         name: "profile",
         // component: ProfilePage
         component: () =>
-            import(/* webpackChunkName: "photo" */ "../views/Profile.vue"),
+            import(/* webpackChunkName: "profile" */ "../views/Profile.vue"),
         props: true
     },
     {
         path: "/profile/edit-profile",
         name: "editProfile",
-        // component: ProfilePage
         component: () =>
-            import(/* webpackChunkName: "photo" */ "../views/EditProfile.vue")
+            import(/* webpackChunkName: "edit-profile" */ "../views/EditProfile.vue")
+    },
+    {
+        path: "/upload",
+        name: "photoUpload",
+        component: () =>
+            import(/* webpackChunkName: "photoUpload" */ "../views/PhotoUpload")
     }
 ];
 

@@ -26,6 +26,13 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "photo" */ "../views/Profile.vue"),
         props: true
+    },
+    {
+        path: "/profile/edit-profile",
+        name: "editProfile",
+        // component: ProfilePage
+        component: () =>
+            import(/* webpackChunkName: "photo" */ "../views/EditProfile.vue")
     }
 ];
 

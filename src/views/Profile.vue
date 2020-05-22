@@ -21,7 +21,7 @@
                     <b-col lg="6" sm="12" class="py-4">
                         <h4>Bio</h4>
                         <p>{{ account.bio }}</p>
-                        <b-button v-if="authUser.uid === this.id" :to="'editaccount'">Edit</b-button>
+                        <b-button v-if="authUser.uid === this.id" :to="{ name: 'editProfile' }">Edit</b-button>
                     </b-col>
 
                     <b-col lg="6" sm="12" class="py-4">

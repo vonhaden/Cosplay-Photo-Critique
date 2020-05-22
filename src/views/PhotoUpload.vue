@@ -123,7 +123,7 @@ export default {
 
                                 // send to the next step
                                 this.$router.push({
-                                    name: "photosubmitdetails",
+                                    name: "photoDetails",
                                     params: { id }
                                 });
 

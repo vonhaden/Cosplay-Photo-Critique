@@ -8,7 +8,8 @@ import {
     alpha_dash,
     size,
     dimensions,
-    mimes
+    mimes,
+    numeric
 } from "vee-validate/dist/rules";
 import { extend, localize } from "vee-validate";
 
@@ -34,3 +35,31 @@ extend("size", size);
 extend("dimensions", dimensions);
 
 extend("mimes", mimes);
+
+extend("numeric", numeric);
+
+extend("decimal", {
+    validate: (value, { decimals = "*", separator = "." } = {}) => {
+        if (value === null || value === undefined || value === '') {
+            return {
+                valid: false
+            };
+        }
+        if (Number(decimals) === 0) {
+            return {
+                valid: /^-?\d*$/.test(value),
+            };
+        }
+        const regexPart = decimals === "*" ? "+" : `{1,${decimals}}`;
+        const regex = new RegExp(
+            `^[-+]?\\d*(\\${separator}\\d${regexPart})?([eE]{1}[-]?\\d+)?$`
+        );
+        return {
+            valid: regex.test(value),
+            data: {
+                serverMessage: "Only decimal values are available"
+            }
+        };
+    },
+    message: `{serverMessage}`
+});

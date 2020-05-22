@@ -38,6 +38,13 @@ const routes = [
         name: "photoUpload",
         component: () =>
             import(/* webpackChunkName: "photoUpload" */ "../views/PhotoUpload")
+    },
+    {
+        path: "/photo-details",
+        name: "photoDetails",
+        component: () =>
+            import(/* webpackChunkName: "photoDetails" */ "../views/PhotoDetails"),
+        props: true
     }
 ];
 

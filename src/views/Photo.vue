@@ -1,14 +1,15 @@
 <template>
     <div id="content" class="photo-page">
+        <!-- Photo -->
         <b-container fluid class="photo-display p-4">
-            <a :href="photo.image">
-                <img :src="photo.image" :alt="altText"/>
-            </a>
+            <div class="photo-wrapper">
+                <b-img :src="photo.image" :alt="altText"/>
+            </div>
         </b-container>
 
-        <b-container>
+        <b-container class="photo-content">
             <b-row>
-                <b-col lg="6" sm="12" class="photodetails">
+                <b-col lg="6" sm="12" class="photodetails mb-4 mb-lg-0">
                     <div class="phototitle">
                         <h1>{{ photo.title }}</h1>
                         <h3 v-if="photo.datetime">{{ formattedDate }}</h3>

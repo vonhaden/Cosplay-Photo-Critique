@@ -138,6 +138,7 @@
 import { UserMixin } from "../mixins/UserMixin";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 import { DB } from "../firebase/db";
+import firebase from "firebase/app";
 
 export default {
     name: "PhotoDetails",
@@ -168,13 +169,15 @@ export default {
     },
     methods: {
         addPoints() {
-            // const db = firebase.firestore();
-            // const increment = firebase.firestore.FieldValue.increment(2);
-            // // Document reference
-            // const storyRef = db.collection('accounts').doc(this.authUser.uid);
-            // // Update read count
-            // storyRef.update({ points: increment });
-            console.log("Add Points");
+            // Set points
+            const increment = firebase.firestore.FieldValue.increment(2);
+
+            // Document reference
+            const storyRef = DB.collection("accounts").doc(this.authUser.uid);
+
+            // Update read count
+            storyRef.update({ points: increment });
+            console.log("Points added");
         },
         addDetails() {
             // Add points for uploading

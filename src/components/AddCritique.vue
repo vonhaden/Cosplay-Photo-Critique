@@ -34,6 +34,7 @@ import { UserMixin } from "../mixins/UserMixin";
 import { Critique } from "../models/CritiqueModel";
 import { DB } from "../firebase/db";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
+import { AddPointsMixin } from "../mixins/AddPointsMixin";
 
 export default {
     name: "AddCritique",
@@ -41,7 +42,7 @@ export default {
         ValidationObserver,
         ValidationProvider
     },
-    mixins: [UserMixin],
+    mixins: [UserMixin, AddPointsMixin],
     props: {
         id: {
             type: String,
@@ -82,7 +83,12 @@ export default {
                             .add(theCritique)
                             .then(function(docRef) {
                                 console.log("Document written:", docRef);
+
+                                // Reset form
                                 self.resetForm();
+
+                                // Add points
+                                self.addPoints(5);
                             })
                             .catch(function(error) {
                                 console.error("Error adding document: ", error);
@@ -107,14 +113,6 @@ export default {
             this.$nextTick(() => {
                 this.$refs.observer.reset();
             });
-        },
-        addPoints() {
-            // TODO: Add points
-            // const increment = firebase.firestore.FieldValue.increment(5);
-            // // Document reference
-            // const storyRef = DB.collection("accounts").doc(this.authUser.uid);
-            // // Update read count
-            // storyRef.update({ points: increment });
         }
     }
 };

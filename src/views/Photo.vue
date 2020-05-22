@@ -147,7 +147,7 @@ export default {
             DB.collection("photos")
                 .doc(this.id)
                 .delete()
-                .then(function() {
+                .then(() => {
                     console.log("Document successfully deleted!");
                     this.$router.push({ name: "home" });
                 })

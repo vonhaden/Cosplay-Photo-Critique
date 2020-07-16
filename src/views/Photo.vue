@@ -3,17 +3,16 @@
         <!-- Photo -->
         <b-container fluid class="photo-display p-4">
             <div class="photo-wrapper">
-                <!-- V-IF ADDED -->
                 <b-img v-if="photo" :src="photo.image" :alt="altText"/>
             </div>
         </b-container>
 
         <b-container class="photo-content">
             <b-row>
-                <b-col lg="6" sm="12" class="photodetails mb-4 mb-lg-0">
+                <b-col lg="6" sm="12" class="photodetails mb-4 mb-lg-0" v-if="photo">
                     <div class="phototitle">
                         <h1>{{ photo.title }}</h1>
-                        <h3 v-if="photo.datetime">{{ formattedDate }}</h3>
+                        <h3>{{ formattedDate }}</h3>
                     </div>
 
                     <div class="photouser">
@@ -137,6 +136,9 @@ export default {
             // Create a reference for the critique
             let critiquesRef = DB.collection("critiques");
 
+            // Set photo to null to prevent errors
+            this.photo = null;
+
             // Delete the photo file
             photoRef
                 .delete()
@@ -160,7 +162,10 @@ export default {
                                 console.log("Comment deleted: " + doc.id);
                             })
                             .catch(function(error) {
-                                console.error("Error removing critique from storage: ", error);
+                                console.error(
+                                    "Error removing critique from storage: ",
+                                    error
+                                );
                             });
                     });
                 })

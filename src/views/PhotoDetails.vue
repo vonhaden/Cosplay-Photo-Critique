@@ -122,7 +122,6 @@
                                         :state="errors[0] ? false : null"
                                     ></b-form-textarea>
                                     <b-form-invalid-feedback>{{ errors[0] }}</b-form-invalid-feedback>
-                                    <b-form-text>This is your photography handle and your display name on the site</b-form-text>
                                 </b-form-group>
                             </validation-provider>
                             <b-button type="submit">Submit Photo</b-button>

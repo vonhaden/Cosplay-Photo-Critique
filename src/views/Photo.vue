@@ -3,7 +3,8 @@
         <!-- Photo -->
         <b-container fluid class="photo-display p-4">
             <div class="photo-wrapper">
-                <b-img :src="photo.image" :alt="altText"/>
+                <!-- V-IF ADDED -->
+                <b-img v-if="photo" :src="photo.image" :alt="altText"/>
             </div>
         </b-container>
 
@@ -130,10 +131,13 @@ export default {
             // Create a storage reference from our storage service
             let storageRef = Storage.ref();
 
-            //Create a reference to the file to delete
+            // Create a reference to the file to delete
             let photoRef = storageRef.child("photos/" + this.id);
 
-            // Delete the file
+            // Create a reference for the critique
+            let critiquesRef = DB.collection("critiques");
+
+            // Delete the photo file
             photoRef
                 .delete()
                 .then(function() {
@@ -144,7 +148,27 @@ export default {
                     console.error("Error removing image from storage: ", error);
                 });
 
-            // delete the photo collection
+            // Delete critiques attached to image
+            critiquesRef
+                .where("photoid", "==", this.id)
+                .get()
+                .then(querySnapshot => {
+                    querySnapshot.forEach(doc => {
+                        doc.ref
+                            .delete()
+                            .then(() => {
+                                console.log("Comment deleted: " + doc.id);
+                            })
+                            .catch(function(error) {
+                                console.error("Error removing critique from storage: ", error);
+                            });
+                    });
+                })
+                .catch(function(error) {
+                    console.log("Error getting critiques: ", error);
+                });
+
+            // Delete the photo collection
             DB.collection("photos")
                 .doc(this.id)
                 .delete()

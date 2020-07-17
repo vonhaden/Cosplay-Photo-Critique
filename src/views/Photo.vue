@@ -52,9 +52,10 @@
                     </div>
 
                     <div class="buttons" v-if="isCreator">
-                        <b-button variant="danger" @click="deletePhoto"
-                            >Delete</b-button
-                        >
+<!--                        <b-button variant="danger" @click="deletePhoto"-->
+<!--                            >Delete</b-button-->
+<!--                        >-->
+                        <DeletePhotoModal></DeletePhotoModal>
                     </div>
                 </b-col>
 
@@ -86,10 +87,12 @@ import { DB } from "../firebase/db";
 import { Storage } from "../firebase/storage";
 import Critique from "../components/Critique";
 import AddCritique from "../components/AddCritique";
+import DeletePhotoModal from "../components/DeletePhotoModal";
 
 export default {
     name: "Photo",
     components: {
+        DeletePhotoModal,
         Critique,
         AddCritique
     },
@@ -127,6 +130,7 @@ export default {
     },
     methods: {
         deletePhoto() {
+            // Method that deletes the photo and attached critiques.
             // Create a storage reference from our storage service
             let storageRef = Storage.ref();
 

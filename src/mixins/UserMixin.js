@@ -16,6 +16,11 @@ export const UserMixin = {
             if (this.authUser) {
                 return this.photo.uid === this.authUser.uid;
             }
+        },
+        isCritiqueAuthor() {
+            if (this.authUser) {
+                return this.critique.uid === this.authUser.uid;
+            }
         }
     },
 

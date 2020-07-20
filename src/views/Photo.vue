@@ -52,9 +52,6 @@
                     </div>
 
                     <div class="buttons" v-if="isCreator">
-<!--                        <b-button variant="danger" @click="deletePhoto"-->
-<!--                            >Delete</b-button-->
-<!--                        >-->
                         <DeletePhotoModal></DeletePhotoModal>
                     </div>
                 </b-col>
@@ -65,6 +62,7 @@
                         <Critique
                             v-for="critique in critiques"
                             :critique="critique"
+                            :auth-user="authUser"
                             :key="critique.id"
                         ></Critique>
                         <div class="divider"></div>

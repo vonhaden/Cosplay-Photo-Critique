@@ -10,12 +10,19 @@
         <div class="commentbody">
             <p>{{ critique.critique }}</p>
         </div>
+        <div class="buttons d-flex flex-row-reverse" v-if="isCritiqueAuthor">
+            <b-button variant="danger" class="mt-2" @click="deleteCritique">Delete</b-button>
+        </div>
     </div>
 </template>
 
 <script>
+import { UserMixin } from "../mixins/UserMixin";
+import { DB } from "../firebase/db";
+
 export default {
     name: "Critique",
+    mixins: [UserMixin],
     props: {
         critique: {
             type: Object,
@@ -32,6 +39,20 @@ export default {
             let m = t.split(":")[1];
 
             return h + ":" + m + " " + t.split(" ")[1];
+        }
+    },
+    methods: {
+        deleteCritique() {
+            // Delete the critique
+            DB.collection("critiques")
+                .doc(this.critique.id)
+                .delete()
+                .then(() => {
+                    console.log("Critique successfully deleted!");
+                })
+                .catch(function(error) {
+                    console.error("Error removing critique: ", error);
+                });
         }
     }
 };

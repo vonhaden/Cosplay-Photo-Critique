@@ -51,7 +51,7 @@
                         <p>{{ photo.comment }}</p>
                     </div>
 
-                    <div class="buttons" v-if="isCreator">
+                    <div class="buttons" v-if="isCreator || isModerator">
                         <DeletePhotoModal></DeletePhotoModal>
                     </div>
                 </b-col>

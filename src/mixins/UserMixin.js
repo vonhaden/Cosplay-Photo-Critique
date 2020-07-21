@@ -13,9 +13,11 @@ export const UserMixin = {
         };
     },
     firestore() {
-        return {
-            account: DB.collection("accounts").doc(this.authUser.uid)
-        };
+        if (this.authUser) {
+            return {
+                account: DB.collection("accounts").doc(this.authUser.uid)
+            };
+        }
     },
     computed: {
         loggedIn() {
@@ -27,7 +29,7 @@ export const UserMixin = {
             }
         },
         isCritiqueAuthor() {
-            if (this.authUser) {
+            if (this.authUser && this.critique) {
                 return this.critique.uid === this.authUser.uid;
             }
         },

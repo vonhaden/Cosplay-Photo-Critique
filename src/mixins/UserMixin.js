@@ -7,7 +7,16 @@ export const UserMixin = {
     props: {
         authUser: { required: true }
     },
-
+    data() {
+        return {
+            account: {}
+        };
+    },
+    firestore() {
+        return {
+            account: DB.collection("accounts").doc(this.authUser.uid)
+        };
+    },
     computed: {
         loggedIn() {
             return this.authUser && this.authUser.uid;
@@ -21,9 +30,18 @@ export const UserMixin = {
             if (this.authUser) {
                 return this.critique.uid === this.authUser.uid;
             }
+        },
+        isModerator() {
+            if (this.authUser) {
+                return this.account.role === "admin" || "moderator";
+            }
+        },
+        isAdmin() {
+            if (this.authUser) {
+                return this.account.role === "admin";
+            }
         }
     },
-
     methods: {
         login() {
             let provider = new firebase.auth.GoogleAuthProvider();

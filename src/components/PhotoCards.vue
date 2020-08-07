@@ -7,7 +7,12 @@
                 :key="photo.id"
             ></PhotoCard>
         </b-card-group>
-        <b-button v-if="!allPhotosLoaded" v-on:click="loadMorePhotos">Load More</b-button>
+        <div v-if="loadMore">
+            <b-button v-if="!allPhotosLoaded" v-on:click="loadMorePhotos">Load More</b-button>
+        </div>
+        <div v-if="viewPhotosPage">
+            <b-button :to="{ name: 'photos' }">View More</b-button>
+        </div>
     </div>
 </template>
 
@@ -19,6 +24,16 @@ export default {
     name: "PhotoCards",
     components: {
         PhotoCard
+    },
+    props: {
+        loadMore: {
+            type: Boolean,
+            default: false
+        },
+        viewPhotosPage: {
+            type: Boolean,
+            default: false
+        }
     },
     data() {
         return {

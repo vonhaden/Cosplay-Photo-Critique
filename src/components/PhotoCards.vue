@@ -7,7 +7,7 @@
                 :key="photo.id"
             ></PhotoCard>
         </b-card-group>
-        <b-button v-on:click="loadMorePhotos">Load More</b-button>
+        <b-button v-if="!allPhotosLoaded" v-on:click="loadMorePhotos">Load More</b-button>
     </div>
 </template>
 
@@ -26,18 +26,22 @@ export default {
                 image: null
             },
             photos: [], // Placeholder until firebase data is loaded
-            photosLoaded: 5 // Number of photos that are loaded with loadMorePhotos()
+            photoCount: "",
+            photosPerLoad: 10 // Number of photos that are loaded with loadMorePhotos()
         };
     },
     firestore: {
         photos: DB.collection("photos")
             .where("uploaded", "==", true)
             .orderBy("datetime", "desc")
-            .limit(5)
+            .limit(10),
+        photoCount: DB.collection("photos-meta").doc("photo-count")
     },
     computed: {
-        totalPhotosLoaded() {
-            return this.photos.length;
+        allPhotosLoaded() {
+            let photosLoaded = this.photos.length;
+            let photosTotal = this.photoCount.count;
+            return photosLoaded === photosTotal;
         }
     },
     methods: {
@@ -53,7 +57,7 @@ export default {
                 .where("uploaded", "==", true)
                 .orderBy("datetime", "desc")
                 .startAfter(lastVisible)
-                .limit(self.photosLoaded);
+                .limit(self.photosPerLoad);
 
             // Run the Query
             loadMoreQuery
@@ -67,8 +71,6 @@ export default {
                 .catch(function(error) {
                     console.log("Error loading photos: ", error);
                 });
-
-            // ToDo: check if all photos are loaded.
         }
     }
 };

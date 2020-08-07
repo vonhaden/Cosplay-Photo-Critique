@@ -13,6 +13,12 @@ const routes = [
         component: Home
     },
     {
+        path: "/photos",
+        name: "photos",
+        component: () =>
+            import(/* webpackChunkName: "photos" */ "../views/Photos.vue")
+    },
+    {
         path: "/photo/:id",
         name: "photo",
         component: () =>

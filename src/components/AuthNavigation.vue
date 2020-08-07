@@ -16,6 +16,7 @@
         <!-- Auth Nav -->
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
+                <b-nav-item :to="{ name: 'photos' }">Photos</b-nav-item>
                 <b-nav-item :to="{ name: 'photoUpload' }">Submit Photo</b-nav-item>
                 <b-nav-item-dropdown :text="account.handle" right>
                     <b-dropdown-item href="#" @click.prevent="logout">Logout</b-dropdown-item>

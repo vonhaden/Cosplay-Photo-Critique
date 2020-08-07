@@ -15,6 +15,7 @@
 
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
+                <b-nav-item :to="{ name: 'photos' }">Photos</b-nav-item>
                 <b-nav-item href="#" @click.prevent="login">
                     Login
                 </b-nav-item>

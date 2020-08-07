@@ -1,6 +1,6 @@
 <template>
     <b-container class="home">
-        <PhotoCards />
+        <PhotoCards :load-more="true"></PhotoCards>
     </b-container>
 </template>
 

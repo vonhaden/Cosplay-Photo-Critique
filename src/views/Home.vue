@@ -1,6 +1,6 @@
 <template>
     <b-container class="home">
-        <PhotoCards />
+        <PhotoCards :view-photos-page="true"></PhotoCards>
     </b-container>
 </template>
 

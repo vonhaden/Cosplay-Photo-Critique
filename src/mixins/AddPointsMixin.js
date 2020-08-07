@@ -4,14 +4,14 @@ import { DB } from "../firebase/db";
 export const AddPointsMixin = {
     methods: {
         addPoints(pointValue) {
+            // Document reference
+            const accountRef = DB.collection("accounts").doc(this.authUser.uid);
+
             // Set points
             const increment = firebase.firestore.FieldValue.increment(pointValue);
 
-            // Document reference
-            const storyRef = DB.collection("accounts").doc(this.authUser.uid);
-
             // Update points
-            storyRef.update({ points: increment });
+            accountRef.update({ points: increment });
         }
     }
 };

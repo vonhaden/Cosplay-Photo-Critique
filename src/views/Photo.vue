@@ -81,6 +81,7 @@
 
 <script>
 import { UserMixin } from "../mixins/UserMixin";
+import { PhotoCounterMixin } from "../mixins/PhotoCounterMixin";
 import { DB } from "../firebase/db";
 import { Storage } from "../firebase/storage";
 import Critique from "../components/Critique";
@@ -94,7 +95,7 @@ export default {
         Critique,
         AddCritique
     },
-    mixins: [UserMixin],
+    mixins: [UserMixin, PhotoCounterMixin],
     props: {
         id: {
             type: String,
@@ -180,7 +181,13 @@ export default {
                 .doc(this.id)
                 .delete()
                 .then(() => {
+                    // Log the Photo Deletion
                     console.log("Document successfully deleted!");
+
+                    // Decrement the Photo Counter
+                    this.removePhotoCount(1);
+
+                    // Navigate the user to the Home Page
                     this.$router.push({ name: "home" });
                 })
                 .catch(function(error) {

@@ -135,6 +135,7 @@
 
 <script>
 import { UserMixin } from "../mixins/UserMixin";
+import { PhotoCounterMixin } from "../mixins/PhotoCounterMixin";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 import { DB } from "../firebase/db";
 import { AddPointsMixin } from "../mixins/AddPointsMixin";
@@ -145,7 +146,7 @@ export default {
         ValidationObserver,
         ValidationProvider
     },
-    mixins: [UserMixin, AddPointsMixin],
+    mixins: [UserMixin, AddPointsMixin, PhotoCounterMixin],
     props: {
         id: {
             type: String,
@@ -179,7 +180,13 @@ export default {
                 .doc(this.id)
                 .update(this.photo)
                 .then(() => {
+                    // Update Photo Count
+                    this.addPhotoCount(1);
+
+                    // Log to the console
                     console.log("Details added");
+
+                    // Route the user to the home page
                     this.$router.push({ name: "home" });
                 })
                 .catch(function(error) {

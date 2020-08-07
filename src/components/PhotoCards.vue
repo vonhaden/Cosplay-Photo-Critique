@@ -67,6 +67,8 @@ export default {
                 .catch(function(error) {
                     console.log("Error loading photos: ", error);
                 });
+
+            // ToDo: check if all photos are loaded.
         }
     }
 };

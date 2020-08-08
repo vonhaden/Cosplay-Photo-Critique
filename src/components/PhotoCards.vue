@@ -41,6 +41,9 @@ export default {
         whereField: {
             type: String
         },
+        whereComparison: {
+            default: "=="
+        },
         whereValue: {
             type: String
         },
@@ -72,7 +75,7 @@ export default {
                 // Query with extra where field
                 return DB.collection("photos")
                     .where("uploaded", "==", true)
-                    .where(this.whereField, "==", this.whereValue)
+                    .where(this.whereField, this.whereComparison, this.whereValue)
                     .orderBy("datetime", "desc")
                     .limit(this.numPhotos);
             } else {

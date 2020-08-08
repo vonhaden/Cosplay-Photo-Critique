@@ -33,7 +33,17 @@ export default {
         viewPhotosPage: {
             type: Boolean,
             default: false
-        }
+        },
+        numPhotos: {
+            type: Number,
+            default: 10
+        },
+        whereField: {
+            type: String
+        },
+        whereValue: {
+            type: String
+        },
     },
     data() {
         return {
@@ -45,18 +55,33 @@ export default {
             photosPerLoad: 10 // Number of photos that are loaded with loadMorePhotos()
         };
     },
-    firestore: {
-        photos: DB.collection("photos")
-            .where("uploaded", "==", true)
-            .orderBy("datetime", "desc")
-            .limit(10),
-        photoCount: DB.collection("photos-meta").doc("photo-count")
+    firestore() {
+        return {
+            photos: this.photoQuery,
+            photoCount: DB.collection("photos-meta").doc("photo-count")
+        };
     },
     computed: {
         allPhotosLoaded() {
             let photosLoaded = this.photos.length;
             let photosTotal = this.photoCount.count;
             return photosLoaded === photosTotal;
+        },
+        photoQuery() {
+            if (this.whereField && this.whereField) {
+                // Query with extra where field
+                return DB.collection("photos")
+                    .where("uploaded", "==", true)
+                    .where(this.whereField, "==", this.whereValue)
+                    .orderBy("datetime", "desc")
+                    .limit(this.numPhotos);
+            } else {
+                // Base query
+                return DB.collection("photos")
+                    .where("uploaded", "==", true)
+                    .orderBy("datetime", "desc")
+                    .limit(this.numPhotos);
+            }
         }
     },
     methods: {

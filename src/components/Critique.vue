@@ -10,8 +10,9 @@
         <div class="commentbody">
             <p>{{ critique.critique }}</p>
         </div>
-        <div class="buttons d-flex flex-row-reverse" v-if="isCritiqueAuthor">
-            <b-button variant="danger" class="mt-2" @click="deleteCritique">Delete</b-button>
+        <div class="buttons d-flex flex-row-reverse" v-if="isCritiqueAuthor || isModerator">
+            <delete-critique-modal></delete-critique-modal>
+<!--            <b-button variant="danger" class="mt-2" @click="deleteCritique">Delete</b-button>-->
         </div>
     </div>
 </template>
@@ -19,9 +20,11 @@
 <script>
 import { UserMixin } from "../mixins/UserMixin";
 import { DB } from "../firebase/db";
+import DeleteCritiqueModal from '@/components/DeleteCritiqueModal'
 
 export default {
     name: "Critique",
+    components: { DeleteCritiqueModal },
     mixins: [UserMixin],
     props: {
         critique: {

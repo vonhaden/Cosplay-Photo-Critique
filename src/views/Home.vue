@@ -1,6 +1,9 @@
 <template>
     <b-container class="home">
-        <PhotoCards :view-photos-page="true"></PhotoCards>
+        <PhotoCards
+            :view-photos-page="true"
+            :num-photos="6"
+        ></PhotoCards>
     </b-container>
 </template>
 
